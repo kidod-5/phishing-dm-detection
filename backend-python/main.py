@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from loguru import logger
+import os
 
 from analysis import get_analysis
 
@@ -27,6 +28,8 @@ async def read_item(query: str):
 
 if __name__ == "__main__":
     try:
-        uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+        port = int(os.getenv("PORT", 8000))  # Use PORT from environment, default to 8000
+        uvicorn.run("main:app", host="0.0.0.0", port=port)  # Use 0.0.0.0 to allow external traffic
     except Exception as e:
         logger.error(f"Error: {e}")
+
