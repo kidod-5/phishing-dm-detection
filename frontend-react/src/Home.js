@@ -9,11 +9,12 @@ const Home = () => {
   const navigate = useNavigate(); // React Router navigation
 
   const backendUrl = 'https://phishing-detection-345117673535.us-central1.run.app';
+
   const handleSearchClick = async (event) => {
     event.preventDefault(); // Prevent form submission
     try {
       // Send the query to the backend using Axios GET
-      const response = await axios.get('${backendUrl}/search-landing', {
+      const response = await axios.get(`${backendUrl}/search-landing`, {
         params: { query: searchText }, // Pass the search text as a query parameter
       });
       const analysisResult = response.data; // Assuming the backend sends the analysis result
