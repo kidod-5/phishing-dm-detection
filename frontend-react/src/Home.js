@@ -12,7 +12,7 @@ const Home = () => {
     event.preventDefault(); // Prevent form submission
     try {
       // Send the query to the backend using Axios GET
-      const response = await axios.get('http://127.0.0.1:8000/search-landing', {
+      const response = await axios.get('https://isthisphishing.vercel.app/search-landing', {
         params: { query: searchText }, // Pass the search text as a query parameter
       });
       const analysisResult = response.data; // Assuming the backend sends the analysis result
