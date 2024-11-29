@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+:root {
+  --font-family: 'Rubik', sans-serif;
+  --font-size-base: calc(5px + 1vmin);
+  --font-size-large: calc(20px + 6vh);
+  --font-size-medium: 25px;
+  --font-size-small: 18px;
+  --color-black: rgb(0, 0, 0);
+  --color-white: #ffffff;
+  --color-gray: #ccc;
+  --padding-base: calc(20px + 2vh);
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-white);
+}
+
+.App {
+  background-color: var(--color-white);
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: var(--color-white);
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+}
+
+.App-header h1 {
+  margin: 0;
+}
+
+.App-body {
+  background-color: var(--color-white);
+  min-height: 100vh;
+  display: block;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App-link {
+  color: var(--color-white);
+}
+
+.Left-container {
+  display: inline-block;
+  padding-left: 50px;
+  max-width: calc(15vw + 200px);
+  font-size: var(--font-size-large);
+}
+
+.Search-area {
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-size-small);
+}
+
+.Searchbar,
+.Message-input {
+  width: 93%;
+  font-size: var(--font-size-medium);
+  box-sizing: border-box;
+  border-radius: 30px;
+  outline: none;
+  font-family: var(--font-family);
+  align-items: center;
+  justify-content: center;
+}
+
+.Searchbar {
+  border: 2px solid var(--color-gray);
+  margin-left: 3.5%;
+}
+
+.Message-input {
+  border: none;
+  padding: 15px;
+}
+
+.searchbtn {
+  background-color: transparent;
+  border: none;
+  color: var(--color-black);
+  font-size: var(--font-size-medium);
+  cursor: pointer;
+}
+
+.Title {
+  font-size: calc(20px + 4vh);
+  text-align: center;
+  padding: 0;
+}
+
+.Title h1,
+.Title h2 {
+  margin: 0;
+  font-family: var(--font-family);
+}
+
+.Title h2 {
+  margin-top: calc(10px + 1vh);
+  margin-bottom: calc(10px + 1vh);
+}
+
+.Search-landing-body p {
+  font-size: calc(10px + 2.5vh);
+  text-align: center;
+}
+
+.Analysis {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  width: 85%;
+  margin: 0 auto;
+  padding: var(--padding-base);
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.Analysis p {
+  padding: 0 10px;
+}
+
+.Analysis hr {
+  border: 1px solid var(--color-white);
+  width: 50px;
+}
