@@ -28,8 +28,7 @@ async def read_item(query: str):
 
 if __name__ == "__main__":
     try:
-        port = int(os.getenv("PORT", 8000))  # Use PORT from environment, default to 8000
-        uvicorn.run("main:app", host="0.0.0.0", port=port)  # Use 0.0.0.0 to allow external traffic
+        uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)
     except Exception as e:
         logger.error(f"Error: {e}")
 
