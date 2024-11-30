@@ -1,40 +1,72 @@
+/*--------------------------------------------------------------------------------------------------*
+ *                                      Home Page Component                                         *
+ *                                         Genna Olavarri                                           *
+ *                                            11-2024                                               *
+ *--------------------------------------------------------------------------------------------------*/
+
+/* This is the home page of the phishing detection web app. It contains the search bar and takes user
+   input to check if a message is phishing.
+*/
+
+/*--------------------------------------------------------------------------------------------------*/
+
+// React imports
 import React, { useState } from 'react';
 import './App.css';
-import { TypingEffect, LoadingEffect } from './utils.js';
 import { useNavigate } from 'react-router-dom';
+
+// Axios for API requests
 import axios from 'axios';
 
+// Local imports
+import { TypingEffect, LoadingEffect } from './utils.js';
+
+/*--------------------------------------------------------------------------------------------------*/
+
 const Home = () => {
+  /* Home page component */
 
-  const [isLoading, setIsLoading] = useState(false); // State to store the loading status
-  const [searchText, setSearchText] = useState(''); // State to store the search input
-  const navigate = useNavigate(); // React Router navigation
+  // State to store the loading status
+  const [isLoading, setIsLoading] = useState(false);
+  // State to store the search input
+  const [searchText, setSearchText] = useState('');
+  // React Router navigation hook
+  const navigate = useNavigate();
 
+  // Google Cloud Function URL (hosted by admin Google account)
   const backendUrl = 'https://phishing-detection-345117673535.us-central1.run.app';
 
   const handleSearchClick = async (event) => {
-    event.preventDefault(); // Prevent form submission
-    setIsLoading(true); // Set loading to true while the request
+    // Prevent the default form submission
+    event.preventDefault(); 
+    // Set loading to true while the request
+    setIsLoading(true);
     try {
       // Send the query to the backend using Axios GET
       const response = await axios.get(`${backendUrl}/search-landing`, {
-        params: { query: searchText }, // Pass the search text as a query parameter
+        // Pass the search text as a query parameter
+        params: { query: searchText },
       });
-      const analysisResult = response.data; // Assuming the backend sends the analysis result
+      // Assuming the backend sends the analysis result
+      const analysisResult = response.data;
 
-      // pause for 1.5 seconds to simulate loading
+      // Pause for 1.5 seconds to simulate loading
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      setIsLoading(false); // Set loading to false after the request
+      // Set loading to false after the request
+      setIsLoading(false);
   
       // Navigate to the search landing page with results
       navigate('/search-landing', { state: { analysisResult } });
     } catch (error) {
       console.error('Error submitting the search query:', error);
 
-      setIsLoading(false); // Set loading to false after the request
+      // Set loading to false after the request
+      setIsLoading(false);
     }
   };
+
+  /*--------------------------------------------------------------------------------------------------*/
 
   return (
     <div className="App">
@@ -80,4 +112,3 @@ const Home = () => {
 };
 
 export default Home;
-

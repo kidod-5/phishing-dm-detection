@@ -1,10 +1,27 @@
+####################################################################################################
+#                                          Analysis                                                #
+#                                       Genna Olavarri                                             #
+#                                          11-2024                                                 #
+####################################################################################################
+
+'''This file contains the analysis logic for the FastAPI server.'''
+
+####################################################################################################
 
 from schemas import AnalysisResponse
 
 def percentage(probability: float) -> float:
+    '''
+    Convert a probability to a percentage
+    '''
     return probability * 100
 
 def determine_conclusion(probability: float) -> tuple:
+    '''
+    Determine the advice and conclusion based on the probability.
+    '''
+
+    # 60% or higher = scam
     if probability >= 0.6:
         return (
             "yes",
@@ -12,6 +29,7 @@ def determine_conclusion(probability: float) -> tuple:
             "do not click on any links or respond to the message. Block the account and report it to the platform.",
             "red"
         )
+    # 30% or lower = genuine
     elif probability <= 0.3:
         return (
             "no",
@@ -19,6 +37,7 @@ def determine_conclusion(probability: float) -> tuple:
             "you can safely respond to the message, but always exercise caution when sharing personal information online!",
             "green"
         )
+    # 40-60% = maybe
     else:
         return (
             "maybe",
@@ -28,6 +47,9 @@ def determine_conclusion(probability: float) -> tuple:
         )
     
 def get_analysis(query: str) -> AnalysisResponse:
+    '''
+    Get the analysis for a given query.
+    '''
 
     print(f"Query: {query}")
     
