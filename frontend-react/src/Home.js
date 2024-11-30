@@ -22,12 +22,19 @@ const Home = () => {
       });
       const analysisResult = response.data; // Assuming the backend sends the analysis result
 
+      // pause for 3 seconds to simulate loading
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
       setIsLoading(false); // Set loading to false after the request
   
       // Navigate to the search landing page with results
       navigate('/search-landing', { state: { analysisResult } });
     } catch (error) {
       console.error('Error submitting the search query:', error);
+
+      // pause for 3 seconds to simulate loading
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
       setIsLoading(false); // Set loading to false after the request
     }
   };
@@ -35,8 +42,7 @@ const Home = () => {
   return (
     <div className="App">
         {isLoading ? (
-            <div className="loading-container">
-                {/* Replace with your fishing pole animation */}
+            <div className="Loading-page">
                 <LoadingEffect />
             </div>
         ) : (
