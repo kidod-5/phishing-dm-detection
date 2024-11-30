@@ -31,7 +31,7 @@ const SearchLanding = () => {
                 <p>{analysisResult.additional_qs ? analysisResult.additional_qs : ''}</p>
             </div>
         </div>
-        </div>
+    </div>
     );
 }
 

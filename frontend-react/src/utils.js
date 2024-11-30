@@ -69,4 +69,19 @@ function HandleSearch(search_input) {
     return <p>Searching for: {search_input}</p>;
 }
 
-export { TypingEffect, HandleSearch };
+function LoadingEffect() {
+  // Make each dot appear after 1 second
+
+  const [dots, setDots] = useState('');
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots((prevDots) => (prevDots.length >= 3 ? '' : prevDots + '.'));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return <p>Loading{dots}</p>;
+}
+
+export { TypingEffect, HandleSearch, LoadingEffect };
