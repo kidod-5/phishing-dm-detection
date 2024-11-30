@@ -1,3 +1,11 @@
+####################################################################################################
+#                                          Schemas                                                 #
+#                                       Genna Olavarri                                             #
+#                                          11-2024                                                 #
+####################################################################################################
+
+'''This file contains the schemas for the FastAPI server.'''
+
 from pydantic import BaseModel
 from typing import List
 
