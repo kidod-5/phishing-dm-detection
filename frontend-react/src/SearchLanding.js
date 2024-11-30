@@ -1,10 +1,29 @@
+/*--------------------------------------------------------------------------------------------------*
+ *                                   Search Landing Page Component                                  *
+ *                                         Genna Olavarri                                           *
+ *                                            11-2024                                               *
+ *--------------------------------------------------------------------------------------------------*/
+
+/* This is the search landing page of the phishing detection web app. It displays the user's query, the
+   analysis results, and the probability of the message being phishing.
+*/
+
+/*--------------------------------------------------------------------------------------------------*/
+
+// React imports
 import { useLocation } from 'react-router-dom';
 import React from 'react';
 
+/*--------------------------------------------------------------------------------------------------*/
+
 const SearchLanding = () => {
 
+    // Get the location object from React Router
     const location = useLocation();
-    const { analysisResult } = location.state || {}; // Retrieve the passed state
+    // Get the analysis result from the location state
+    const { analysisResult } = location.state || {};
+
+/*--------------------------------------------------------------------------------------------------*/
 
     return (
         <div>

@@ -1,10 +1,24 @@
+####################################################################################################
+#                                            Main                                                  #
+#                                       Genna Olavarri                                             #
+#                                          11-2024                                                 #
+####################################################################################################
+
+'''This is the entry point for the FastAPI server. It sets up the server and handles the requests.'''
+
+####################################################################################################
+
+# FastAPI imports
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
 import uvicorn
 from loguru import logger
-import os
 
+# Local imports
 from analysis import get_analysis
+
+####################################################################################################
 
 app = FastAPI()
 
