@@ -22,8 +22,8 @@ const Home = () => {
       });
       const analysisResult = response.data; // Assuming the backend sends the analysis result
 
-      // pause for 3 seconds to simulate loading
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      // pause for 1.5 seconds to simulate loading
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setIsLoading(false); // Set loading to false after the request
   
@@ -31,9 +31,6 @@ const Home = () => {
       navigate('/search-landing', { state: { analysisResult } });
     } catch (error) {
       console.error('Error submitting the search query:', error);
-
-      // pause for 3 seconds to simulate loading
-      await new Promise((resolve) => setTimeout(resolve, 3000));
 
       setIsLoading(false); // Set loading to false after the request
     }
