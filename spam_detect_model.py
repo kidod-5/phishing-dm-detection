@@ -17,11 +17,11 @@ def load_and_preprocess_data(file_path):
     data = pd.read_csv(file_path)
     
     # Ensure the dataset has the required columns
-    if 'Label' not in data.columns or 'Message' not in data.columns:
+    if 'label' not in data.columns or 'message' not in data.columns:
         raise ValueError("Dataset must contain 'text' and 'label' columns.")
     
     # Drop any missing values
-    data = data.dropna(subset=['Message','Label'])
+    data = data.dropna(subset=['message','label'])
     
     # Normalize labels: lowercase everything
     #data['Label'] = data['Label'].str.lower()
@@ -34,12 +34,12 @@ def load_and_preprocess_data(file_path):
         2 : 'phishing',
         'phishing': 'phishing'
     }
-    data['Label'] = data['Label'].map(label_mapping)
+    data['label'] = data['label'].map(label_mapping)
     
     # Remove any rows with labels not in the mapping
-    data = data.dropna(subset=['Label'])
+    data = data.dropna(subset=['label'])
     
-    return data['Message'], data['Label']
+    return data['message'], data['label']
 
 # Step 2: Preprocessing Pipeline
 def preprocess_texts(X, max_features=5000):
@@ -91,7 +91,7 @@ def save_model(model, vectorizer, model_path="model.pkl", vectorizer_path="vecto
 # Step 5: Main Execution Flow (Example Usage)
 # Uncomment below for testing locally with an example dataset
 
-file_path = "mock_DMs_comments_dataset.csv"  # Replace with your dataset path
+file_path = "new_data.csv"  # Replace with your dataset path
 X, y = load_and_preprocess_data(file_path)
 X_transformed, tfidf_vectorizer = preprocess_texts(X)
 trained_model, eval_report = train_and_evaluate(X_transformed, y)
@@ -126,7 +126,7 @@ def predict_message(example_text, model_path="model.pkl", vectorizer_path="vecto
     return predicted_label, predicted_probabilities
 
 # Example Usage
-example_message = "Earn $500 a day working from home! Limited spots available. Sign up now!"
+example_message = "Hello steve, your shipment from UPS will arrive today. Click here to track your package"
 label, probabilities = predict_message(example_message)
 print(f"Predicted Label: {label}")
 print(f"Probabilities: {probabilities}")
