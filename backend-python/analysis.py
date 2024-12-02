@@ -103,8 +103,15 @@ def get_analysis(query: str) -> AnalysisResponse:
     spam_prob = percentage(spam)
     ham_prob = percentage(ham)
 
-    probability = max(spam_prob, phishing_prob, ham_prob)
-    message_type = max("spam", "phishing", "ham", key= lambda x: eval(x+"_prob"))
+    if ham_prob > phishing_prob and ham_prob > spam_prob:
+        message_type = "ham"
+        probability = ham_prob
+    elif phishing_prob > spam_prob and phishing_prob > ham_prob:
+        message_type = "phishing"
+        probability = phishing_prob
+    else:
+        message_type = "spam"
+        probability = spam_prob
 
     answer, conclusion, advice, color = determine_conclusion(spam_prob, phishing_prob, ham_prob)
 
