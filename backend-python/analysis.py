@@ -22,28 +22,32 @@ def percentage(probability: float) -> float:
     '''
     return probability * 100
 
-def determine_conclusion(probability: float) -> tuple:
-    '''
-    Determine the advice and conclusion based on the probability.
-    '''
+def determine_conclusion(spam, phishing, ham) -> tuple:
 
-    # 60% or higher = scam
-    if probability >= 0.6:
-        return (
-            "yes",
-            "likely a scam or phishing attempt",
-            "do not click on any links or respond to the message. Block the account and report it to the platform.",
-            "red"
-        )
-    # 30% or lower = genuine
-    elif probability <= 0.3:
+    if ham > phishing and ham > spam:
         return (
             "no",
-            "likely genuine",
+            "likely genuine", 
             "you can safely respond to the message, but always exercise caution when sharing personal information online!",
             "green"
         )
-    # 40-60% = maybe
+
+    ham_window = [ham-10, ham+10]
+
+    if phishing > spam and phishing not in ham_window:
+        return (
+            "yes",
+            "likely a phishing attempt",
+            "do not click on any links or respond to the message. Block the account and report it to the platform.",
+            "red"
+        )
+    elif spam > phishing and spam not in ham_window:
+        return (
+            "yes",
+            "likely a scam",
+            "do not click on any links or respond to the message. Block the account and report it to the platform.",
+            "red"
+        )
     else:
         return (
             "maybe",
@@ -91,11 +95,16 @@ def get_analysis(query: str) -> AnalysisResponse:
     # Get the probabilities
     probabilities = predict_message(query, model_path, vectorizer_path)
 
-    # spam = probabilities[2]
+    spam = probabilities[2]
     phishing = probabilities[1]
-    # ham = probabilities[0]
+    ham = probabilities[0]
     
-    probability = percentage(phishing)
-    answer, conclusion, advice, color = determine_conclusion(phishing)
+    phishing_prob = percentage(phishing)
+    spam_prob = percentage(spam)
+    ham_prob = percentage(ham)
+
+    probability = max(spam_prob, phishing_prob, ham_prob)
+
+    answer, conclusion, advice, color = determine_conclusion(spam_prob, phishing_prob, ham_prob)
 
     return AnalysisResponse(query= query, answer=answer, probability=probability, conclusion=conclusion, advice=advice, color=color)
