@@ -10,6 +10,12 @@
 
 from schemas import AnalysisResponse
 
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+import pickle
+
 def percentage(probability: float) -> float:
     '''
     Convert a probability to a percentage
@@ -46,15 +52,50 @@ def determine_conclusion(probability: float) -> tuple:
             "blue"
         )
     
+def predict_message(message, model_path="model.pkl", vectorizer_path="vectorizer.pkl"):
+    """
+    Predict the category of a new message using the trained model.
+    :param message: The input text to classify.
+    :param model_path: Path to the trained model file.
+    :param vectorizer_path: Path to the vectorizer file.
+    :return: Predicted label and probabilities for each class.
+    """
+    # Load the trained model and vectorizer
+    with open(model_path, 'rb') as model_file:
+        model = pickle.load(model_file)
+    with open(vectorizer_path, 'rb') as vectorizer_file:
+        vectorizer = pickle.load(vectorizer_file)
+    
+    # Preprocess the input text
+    transformed_text = vectorizer.transform([message])
+    
+    # Make predictions
+    # spam, ham, phishing -- don't care about this for now
+    predicted_label = model.predict(transformed_text)[0]
+
+    # list of probabilities for each class
+    # [ham, phishing, spam]
+    predicted_probabilities = model.predict_proba(transformed_text)[0]
+    
+    return predicted_probabilities
+    
 def get_analysis(query: str) -> AnalysisResponse:
     '''
     Get the analysis for a given query.
     '''
 
-    print(f"Query: {query}")
+    # Load the trained model and vectorizer
+    model_path = "model.pkl"
+    vectorizer_path = "vectorizer.pkl"
+
+    # Get the probabilities
+    probabilities = predict_message(query, model_path, vectorizer_path)
+
+    # spam = probabilities[2]
+    phishing = probabilities[1]
+    # ham = probabilities[0]
     
-    raw_probability = 0.9
-    probability = percentage(raw_probability)
-    answer, conclusion, advice, color = determine_conclusion(raw_probability)
+    probability = percentage(phishing)
+    answer, conclusion, advice, color = determine_conclusion(phishing)
 
     return AnalysisResponse(query= query, answer=answer, probability=probability, conclusion=conclusion, advice=advice, color=color)
