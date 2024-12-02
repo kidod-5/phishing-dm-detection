@@ -17,3 +17,4 @@ class AnalysisResponse(BaseModel):
     advice: str
     additional_qs: List[str] = None
     color: str = None
+    type: str

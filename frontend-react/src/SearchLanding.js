@@ -39,7 +39,7 @@ const SearchLanding = () => {
             </div>
         </div>
         <div className="Search-landing-body">
-            <p>There is a <b>{ analysisResult.probability }%</b> chance this is a phishing message.</p>
+            <p>There is a <b>{ analysisResult.probability }%</b> chance this is a { analysisResult.type } message.</p>
             <div className="Analysis">
                 <p>"<em>{ analysisResult.query }</em>"
                     <br></br><br></br>
