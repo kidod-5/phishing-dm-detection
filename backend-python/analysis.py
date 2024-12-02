@@ -104,7 +104,8 @@ def get_analysis(query: str) -> AnalysisResponse:
     ham_prob = percentage(ham)
 
     probability = max(spam_prob, phishing_prob, ham_prob)
+    message_type = max("spam", "phishing", "ham", key= lambda x: eval(x+"_prob"))
 
     answer, conclusion, advice, color = determine_conclusion(spam_prob, phishing_prob, ham_prob)
 
-    return AnalysisResponse(query= query, answer=answer, probability=probability, conclusion=conclusion, advice=advice, color=color)
+    return AnalysisResponse(query= query, answer=answer, probability=probability, conclusion=conclusion, advice=advice, color=color, type=message_type)
