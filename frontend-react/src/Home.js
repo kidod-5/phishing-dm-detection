@@ -105,6 +105,11 @@ const Home = () => {
                         </p>
                     </div>
                 </div>
+                <footer className="App-footer">
+                    <p>
+                        © 2024 Kido Douglas & Genna Olavarri
+                    </p>
+                </footer>
             </>
         )}
     </div>
