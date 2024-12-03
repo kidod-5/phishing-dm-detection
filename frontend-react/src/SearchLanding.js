@@ -50,6 +50,11 @@ const SearchLanding = () => {
                 <p>{analysisResult.additional_qs ? analysisResult.additional_qs : ''}</p>
             </div>
         </div>
+        <footer className="App-footer">
+            <p>
+                © 2024 Kido Douglas & Genna Olavarri
+            </p>
+        </footer>
     </div>
     );
 }
