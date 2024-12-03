@@ -40,7 +40,7 @@ const SearchLanding = () => {
                     setAnimateChart(true);
                 }
             },
-            { threshold: 0.5 } // Trigger when 50% of the chart is visible
+            { threshold: 0.8 } // Trigger when 50% of the chart is visible
         );
 
         if (currentChartRef) {
@@ -56,7 +56,7 @@ const SearchLanding = () => {
 
     // Helper function to create pie chart data
     const createPieData = (label, probability, color) => ({
-        labels: [label, `Other (${100 - probability}%)`],
+        labels: [label],
         datasets: [
             {
                 data: [probability, 100 - probability],
@@ -136,17 +136,16 @@ const SearchLanding = () => {
                     <h3>Results</h3>
                     {animateChart && (
                         <>
-                            <div className="Pie-chart">
-                                <h4>Ham Probability</h4>
-                                <Pie className="Pie-chart" data={hamData} options={pieOptions} />
-                            </div>
-                            <div className="Pie-chart">
-                                <h4>Phishing Probability</h4>
-                                <Pie className="Pie-chart" data={phishingData} options={pieOptions} />
-                            </div>
-                            <div className="Pie-chart">
-                                <h4>Spam Probability</h4>
-                                <Pie className="Pie-chart" data={spamData} options={pieOptions} />
+                            <div className="Charts">
+                                <div className="Pie-chart">
+                                    <Pie className="Pie-chart" data={hamData} options={pieOptions} />
+                                </div>
+                                <div className="Pie-chart">
+                                    <Pie className="Pie-chart" data={phishingData} options={pieOptions} />
+                                </div>
+                                <div className="Pie-chart">
+                                    <Pie className="Pie-chart" data={spamData} options={pieOptions} />
+                                </div>
                             </div>
                         </>
                     )}

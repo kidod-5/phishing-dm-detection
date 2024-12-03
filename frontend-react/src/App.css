@@ -172,7 +172,14 @@ body {
   font-size: calc(20px + 3vh);
 }
 
+.Charts {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
 .Pie-chart {
-  max-height: 100px;
+  max-height: calc(50px + 50vh);
+  padding: 20px;
 }
 
