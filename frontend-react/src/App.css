@@ -132,11 +132,12 @@ body {
 .Analysis {
   background-color: var(--color-black);
   color: var(--color-white);
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
   padding: var(--padding-base);
   text-align: center;
   margin-bottom: 100px;
+  position: sticky;
 }
 
 .Analysis p {
