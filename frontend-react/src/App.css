@@ -127,13 +127,13 @@ body {
 .Search-landing-body p {
   font-size: calc(10px + 2.5vh);
   text-align: center;
+  margin-bottom: 50px;
+  justify-content: center;
 }
 
 .Analysis {
   background-color: var(--color-black);
   color: var(--color-white);
-  width: 100%;
-  margin: 0 auto;
   padding: var(--padding-base);
   text-align: center;
   margin-bottom: 100px;
@@ -141,7 +141,8 @@ body {
 }
 
 .Analysis p {
-  padding: 0 10px;
+  padding-left: 20px;
+  padding-right: 30px;
 }
 
 .Analysis hr {
@@ -162,7 +163,9 @@ body {
   background-color: var(--color-black);
   color: var(--color-white);
   text-align: center;
-  padding: 10px;
   bottom: 0;
   width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
+
