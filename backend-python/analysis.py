@@ -130,4 +130,12 @@ def get_analysis(query: str) -> AnalysisResponse:
 
     answer, conclusion, advice, color = determine_conclusion(spam_prob, phishing_prob, ham_prob)
 
-    return AnalysisResponse(query= query, answer=answer, probability=probability, conclusion=conclusion, advice=advice, color=color, type=message_type)
+    return AnalysisResponse(query= query, 
+                            answer=answer, 
+                            probability=probability, 
+                            conclusion=conclusion, 
+                            advice=advice, 
+                            color=color, 
+                            type=message_type,
+                            all_probabilities=[ham_prob, phishing_prob, spam_prob]
+                            )

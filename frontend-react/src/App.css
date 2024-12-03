@@ -136,8 +136,6 @@ body {
   color: var(--color-white);
   padding: var(--padding-base);
   text-align: center;
-  margin-bottom: 100px;
-  position: sticky;
 }
 
 .Analysis p {
@@ -167,5 +165,14 @@ body {
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.Results {
+  text-align: center;
+  font-size: calc(20px + 3vh);
+}
+
+.Pie-chart {
+  max-height: 100px;
 }
 

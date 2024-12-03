@@ -18,3 +18,4 @@ class AnalysisResponse(BaseModel):
     additional_qs: List[str] = None
     color: str = None
     type: str
+    all_probabilities: List[float]
