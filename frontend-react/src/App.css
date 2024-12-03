@@ -9,7 +9,7 @@
 :root {
   --font-family: 'Rubik', sans-serif;
   --font-size-base: calc(5px + 1vmin);
-  --font-size-large: calc(20px + 6vh);
+  --font-size-large: calc(20px + 5vh);
   --font-size-medium: 25px;
   --font-size-small: 18px;
   --color-black: rgb(0, 0, 0);
