@@ -13,8 +13,13 @@
 // React imports
 import { useLocation } from 'react-router-dom';
 import { React, useState, useEffect, useRef } from 'react';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 /*--------------------------------------------------------------------------------------------------*/
+
+// Register required components for Chart.js
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const SearchLanding = () => {
 
@@ -25,8 +30,6 @@ const SearchLanding = () => {
 
     const [animateChart, setAnimateChart] = useState(false);
     const chartRef = useRef();
-
-    animateChart && console.log('Chart is visible!');
 
     useEffect(() => {
         const currentChartRef = chartRef.current; // Copy the current ref value
@@ -50,6 +53,32 @@ const SearchLanding = () => {
             }
         };
     }, []);
+
+    // Helper function to create pie chart data
+    const createPieData = (label, probability, color) => ({
+        labels: [label, `Other (${100 - probability}%)`],
+        datasets: [
+            {
+                data: [probability, 100 - probability],
+                backgroundColor: [color, '#eaeaea'],
+                hoverBackgroundColor: [color, '#cccccc'],
+            },
+        ],
+    });
+
+    // Define pie chart data for each message type
+    const hamData = createPieData('Ham', analysisResult?.all_probabilities[0], '#36A2EB');
+    const phishingData = createPieData('Phishing', analysisResult?.all_probabilities[1], '#FF6384');
+    const spamData = createPieData('Spam', analysisResult?.all_probabilities[2], '#FFCE56');
+
+    const pieOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+        },
+    };
 
 /*--------------------------------------------------------------------------------------------------*/
 
@@ -103,9 +132,24 @@ const SearchLanding = () => {
                         </p>
                     ) : ( null )}
                 </div>
-                <div className="Results">
+                <div className="Results" ref={chartRef}>
                     <h3>Results</h3>
-                    
+                    {animateChart && (
+                        <>
+                            <div className="Pie-chart">
+                                <h4>Ham Probability</h4>
+                                <Pie className="Pie-chart" data={hamData} options={pieOptions} />
+                            </div>
+                            <div className="Pie-chart">
+                                <h4>Phishing Probability</h4>
+                                <Pie className="Pie-chart" data={phishingData} options={pieOptions} />
+                            </div>
+                            <div className="Pie-chart">
+                                <h4>Spam Probability</h4>
+                                <Pie className="Pie-chart" data={spamData} options={pieOptions} />
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
             <footer className="App-footer">
