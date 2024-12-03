@@ -156,3 +156,13 @@ body {
   width: 100%;
   font-size: var(--font-size-large);
 }
+
+.App-footer {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
