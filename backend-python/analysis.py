@@ -24,24 +24,24 @@ def percentage(probability: float) -> float:
 
 def determine_conclusion(spam, phishing, ham) -> tuple:
 
-    # Check if the probability that the message is ham is within 10% of the probability
-    # that the message is spam or phishing
-    if abs(ham - spam) <= 15 or abs(ham - phishing) <= 15:
-        return (
-            "maybe",
-            "ambiguous. You should investigate a little more to be sure",
-            "examine details about the account before taking any action.",
-            "blue"
-        )
-
-    # If the message is not within 10% of spam or phishing probability, then it is likely ham
     if ham > phishing and ham > spam:
-        return (
-            "no",
-            "likely genuine", 
-            "you can safely respond to the message, but always exercise caution when sharing personal information online!",
-            "green"
-        )
+        # Check if the probability that the message is ham is within 10% of the probability
+        # that the message is spam or phishing
+        if abs(ham - spam) <= 15 or abs(ham - phishing) <= 15:
+            return (
+                "maybe",
+                "ambiguous. You should investigate a little more to be sure",
+                "examine details about the account before taking any action.",
+                "blue"
+            )
+        else:
+            # If the message is not within 10% of spam or phishing probability, then it is likely ham
+            return (
+                "no",
+                "likely genuine", 
+                "you can safely respond to the message, but always exercise caution when sharing personal information online!",
+                "green"
+            )
 
     # If the probability of phishing is greater than the probability of spam, then it is likely phishing
     if phishing > spam:
