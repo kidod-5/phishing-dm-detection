@@ -39,7 +39,7 @@ def determine_conclusion(spam, phishing, ham) -> tuple:
             return (
                 "no",
                 "likely genuine", 
-                "you can safely respond to the message, but always exercise caution when sharing personal information online!",
+                "you should be safe to respond to the message, but always exercise caution when sharing personal information online!",
                 "green"
             )
 

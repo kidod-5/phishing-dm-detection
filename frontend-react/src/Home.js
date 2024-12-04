@@ -72,13 +72,14 @@ const Home = () => {
     <div className="App">
         {isLoading ? (
             <div className="Loading-page">
+                <img src="/images/phishinglogo.png" alt="Phishing Logo" width="250px" />
                 <LoadingEffect />
             </div>
         ) : (
             <>
                 <header className="App-header">
                     <a href="/">
-                        <img src="/images/phishinglogo.png" alt="Phishing Logo" width="200px" />
+                        <img src="/images/phishinglogo.png" alt="Phishing Logo" width="250px" />
                     </a>
                 </header>
                 <div className="App-body" id="Home_page">
