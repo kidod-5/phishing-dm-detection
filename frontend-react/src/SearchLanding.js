@@ -118,7 +118,7 @@ const SearchLanding = () => {
         <div>
             <header className="App-header">
                 <a href="/">
-                    <img src="/images/phishinglogo.png" alt="Phishing Logo" width="200px" />
+                    <img src="/images/phishinglogo.png" alt="Phishing Logo" width="250px" />
                 </a>
             </header>
             <div className="Title">
